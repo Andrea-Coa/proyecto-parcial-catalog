@@ -1,0 +1,181 @@
+openapi: 3.0.0
+info:
+  title: API de Universidad
+  description: API para gestionar datos de una universidad.
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:8000
+    description: Servidores de producción
+
+paths:
+  /cursos:
+    get:
+      summary: Obtener todos los cursos
+      responses:
+        '200':
+          description: Un arreglo JSON de cursos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    _id:
+                      type: string
+                    codigo_curso:
+                      type: string
+                    nombre:
+                      type: string
+                    creditos:
+                      type: integer
+                    horas_semana:
+                      type: integer
+                    categoria:
+                      type: string
+                    descripcion:
+                      type: string
+    post:
+      summary: Crear un nuevo curso
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                _id:
+                  type: string
+                codigo_curso:
+                  type: string
+                nombre:
+                  type: string
+                creditos:
+                  type: integer
+                horas_semana:
+                  type: integer
+                categoria:
+                  type: string
+                descripcion:
+                  type: string
+      responses:
+        '201':
+          description: Curso creado exitosamente
+          content:
+            application/x-www-form-urlencoded:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                  codigo_curso:
+                    type: string
+                  nombre:
+                    type: string
+                  creditos:
+                    type: integer
+                  horas_semana:
+                    type: integer
+                  categoria:
+                    type: string
+                  descripcion:
+                    type: string
+  /cursos/{id}:
+    paramenters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+    get:
+      summary: Obtener un curso por ID
+      responses:
+        '200':
+          description: Un objeto de curso
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    _id:
+                      type: string
+                    codigo_curso:
+                      type: string
+                    nombre:
+                      type: string
+                    creditos:
+                      type: integer
+                    horas_semana:
+                      type: integer
+                    categoria:
+                      type: string
+                    descripcion:
+                      type: string
+        '404':
+          description: Curso no encontrado
+    patch:
+      summary: Actualizar curso por ID
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                _id:
+                  type: string
+                codigo_curso:
+                  type: string
+                nombre:
+                  type: string
+                creditos:
+                  type: integer
+                horas_semana:
+                  type: integer
+                categoria:
+                  type: string
+                descripcion:
+                  type: string
+      responses:
+        '200':
+          description: Estudiante actualizado exitosamente
+        '404':
+          description: Estudiante no encontrado
+    delete:
+      summary: Eliminar un curso por ID
+      responses:
+        '200':
+          description: Curso eliminado exitosamente
+        '400':
+          description: Curso no encontrado
+  /cursos/codigo/{codigo}:
+    get:
+      summary: Obtener curso por codigo
+      responses:
+        '200':
+          description: Un objeto de curso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                  codigo_curso:
+                    type: string
+                  nombre:
+                    type: string
+                  creditos:
+                    type: integer
+                  horas_semana:
+                    type: integer
+                  categoria:
+                    type: string
+                  descripcion:
+                    type: string
+        '404':
+          description: Curso no encontrado
+
