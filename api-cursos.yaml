@@ -178,4 +178,226 @@ paths:
                     type: string
         '404':
           description: Curso no encontrado
-
+  /ofertas:
+    get:
+      summary: Obtener todas las ofertas de cursos
+      responses:
+        '200':
+          description: Arreglo JSON de ofertas de cursos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    _id:
+                      type: string
+                    codigo_curso:
+                      type: string
+                    nombre_curso:
+                      type: string
+                    creditos:
+                      type: integer
+                    seccion:
+                      type: integer
+                    periodo:
+                      type: string
+                    total_cupos:
+                      type: integer
+                    nro_inscritos:
+                      type: integer
+                    horarios:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          _id:
+                            type: string
+                          dia:
+                            type: integer
+                          hora_inicio:
+                            type: integer
+                          hora_fin:
+                            type: integer
+    post:
+      summary: Crear una nueva oferta de curso
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                _id:
+                  type: string
+                codigo_curso:
+                  type: string
+                nombre_curso:
+                  type: string
+                creditos:
+                  type: integer
+                seccion:
+                  type: integer
+                periodo:
+                  type: string
+                total_cupos:
+                  type: integer
+                nro_inscritos:
+                  type: integer
+                horarios:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      _id:
+                        type: string
+                      dia:
+                        type: integer
+                      hora_inicio:
+                        type: integer
+                      hora_fin:
+                        type: integer
+      responses:
+        '201':
+          description: Oferta de curso creada exitosamente
+  /ofertas/{id}:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+    get:
+      summary: Obtener una oferta de curso por ID
+      responses:
+      '200':
+        description: Un objeto de oferta de curso
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                _id:
+                  type: string
+                codigo_curso:
+                  type: string
+                nombre_curso:
+                  type: string
+                creditos:
+                  type: integer
+                seccion:
+                  type: integer
+                periodo:
+                  type: string
+                total_cupos:
+                  type: integer
+                nro_inscritos:
+                  type: integer
+                horarios:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      _id:
+                        type: string
+                      dia:
+                        type: integer
+                      hora_inicio:
+                        type: integer
+                      hora_fin:
+                        type: integer
+      '404':
+        description: Oferta de curso no encontrada
+    patch:
+      summary: Actualizar oferta de curso por ID
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                _id:
+                  type: string
+                codigo_curso:
+                  type: string
+                nombre_curso:
+                  type: string
+                creditos:
+                  type: integer
+                seccion:
+                  type: integer
+                periodo:
+                  type: string
+                total_cupos:
+                  type: integer
+                nro_inscritos:
+                  type: integer
+                horarios:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      _id:
+                        type: string
+                      dia:
+                        type: integer
+                      hora_inicio:
+                        type: integer
+                      hora_fin:
+                        type: integer
+      responses:
+        '200': 
+          description: Oferta de curso actualizado exitosamente
+        '400': 
+          description: Error al enviar los datos 
+    delete:
+      summary: Eliminar una oferta de curso por ID
+      responses:
+        '200':
+          description: Oferta de curso eliminada exitosamente
+        '500':
+          description: Error en el servidor
+  /ofertas/{codigo_curso}/{periodo}/{seccion}:
+    get:
+      summary: Obtener una oferta según un código de curso, un periodo académico y una sección
+      responses:
+        '200':
+          description: Un arreglo de ofertas de cursos, posiblemente de un solo elemento
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    _id:
+                      type: string
+                    codigo_curso:
+                      type: string
+                    nombre_curso:
+                      type: string
+                    creditos:
+                      type: integer
+                    seccion:
+                      type: integer
+                    periodo:
+                      type: string
+                    total_cupos:
+                      type: integer
+                    nro_inscritos:
+                      type: integer
+                    horarios:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          _id:
+                            type: string
+                          dia:
+                            type: integer
+                          hora_inicio:
+                            type: integer
+                          hora_fin:
+                            type: integer
